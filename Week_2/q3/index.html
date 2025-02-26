@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Exercise 3</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Custom Styles -->
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      padding-top: 20px;
+      height: 100%;
+    }
+    .top-section {
+      background: linear-gradient(45deg, #007bff, #6610f2);
+      color: white;
+      border-radius: 15px;
+      padding: 50px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .top-section h2 {
+      font-weight: 700;
+    }
+    .top-section .input-group, .top-section .btn {
+      margin-top: 20px;
+    }
+    .badge-custom {
+      background-color: #28a745;
+      font-size: 18px;
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+    .bottom-section {
+      background-color: #f8f9fa;
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      height: 100%;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .bottom-section .card {
+      border-radius: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .btn-custom {
+      background-color: #28a745;
+      color: white;
+      font-size: 18px;
+      padding: 10px 25px;
+      border-radius: 5px;
+    }
+    .card-body {
+      text-align: center;
+    }
+    .card-body h5 {
+      font-weight: 600;
+    }
+    .part {
+      flex: 1 1 30%;
+      margin: 10px;
+    }
+    .part h4 {
+      margin-bottom: 15px;
+    }
+    .input-group .form-control {
+      border-radius: 25px;
+    }
+    .btn-group button {
+      border-radius: 50px;
+    }
+    .btn-warning {
+      font-size: 16px;
+    }
+    .modal-body p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Top Section -->
+    <div class="top-section">
+      <h2 class="text-center">Week 2 | Question 3</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-text">Your Name</span>
+            <input type="text" class="form-control" id="nameInput" placeholder="Enter your name">
+            <button class="btn btn-outline-light" type="button" id="submitBtn">Submit</button>
+          </div>
+          <div id="nameBadge" class="badge-custom">Welcome, Random person!</div>
+        </div>
+        <div class="col-md-6 text-center">
+          <button type="button" class="btn btn-warning btn-custom" data-bs-toggle="modal" data-bs-target="#infoModal">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom-section">
+      <!-- Part 1 -->
+      <div class="part">
+        <h4>Part 1: Search</h4>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search here...">
+          <button class="btn btn-outline-secondary" type="button">Go</button>
+        </div>
+      </div>
+
+      <!-- Part 2 -->
+      <div class="part">
+        <h4>Part 2: Action Buttons</h4>
+        <div class="btn-group-vertical" role="group" aria-label="Action buttons">
+          <button type="button" class="btn btn-primary btn-lg">Button 1</button>
+          <button type="button" class="btn btn-info btn-lg">Button 2</button>
+          <button type="button" class="btn btn-danger btn-lg">Button 3</button>
+        </div>
+      </div>
+
+      <!-- Part 3 -->
+      <div class="part">
+        <h4>Part 3: Cards</h4>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card 1</h5>
+            <p class="card-text">Card Widget number 1</p>
+            <button class="btn btn-primary">Learn More</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card 2</h5>
+            <p class="card-text">Here's another card with different content</p>
+            <button class="btn btn-success">Discover</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="infoModalLabel">More Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Made by yours truly, Komal Mathur</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // jQuery to handle name input and badge display
+    $(document).ready(function() {
+      $('#submitBtn').click(function() {
+        var name = $('#nameInput').val();
+        if(name) {
+          $('#nameBadge').html('Welcome, ' + name + '!');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

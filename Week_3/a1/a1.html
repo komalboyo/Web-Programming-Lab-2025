@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Bill Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            max-width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 22px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+            color: #666;
+        }
+
+        select, input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 320px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .modal h3 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .modal p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .modal button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #e53935;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Product Bill Generator</h2>
+        
+        <!-- Dropdown for selecting product brand -->
+        <label for="brand">Select Brand:</label>
+        <select id="brand">
+            <option value="HP">HP</option>
+            <option value="Nokia">Nokia</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Motorola">Motorola</option>
+            <option value="Apple">Apple</option>
+        </select>
+        
+        <!-- Checkbox for selecting Mobile and Laptop -->
+        <div class="checkbox-group">
+            <div>
+                <input type="checkbox" id="mobile" value="Mobile">
+                <label for="mobile">Mobile</label>
+            </div>
+            <div>
+                <input type="checkbox" id="laptop" value="Laptop">
+                <label for="laptop">Laptop</label>
+            </div>
+        </div>
+        
+        <!-- Quantity Inputs (Initially hidden) -->
+        <div id="mobileQuantityDiv" class="hidden">
+            <label for="mobileQuantity">Enter Mobile Quantity:</label>
+            <input type="number" id="mobileQuantity" value="0" min="0">
+        </div>
+
+        <div id="laptopQuantityDiv" class="hidden">
+            <label for="laptopQuantity">Enter Laptop Quantity:</label>
+            <input type="number" id="laptopQuantity" value="0" min="0">
+        </div>
+        
+        <!-- Button to generate bill -->
+        <button id="produceBillBtn">Produce Bill</button>
+    </div>
+
+    <!-- Modal for displaying bill -->
+    <div id="billModal" class="modal">
+        <h3>Bill Summary</h3>
+        <p id="mobileBill"></p>
+        <p id="laptopBill"></p>
+        <p id="totalAmount"></p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        // Prices for different products
+        const productPrices = {
+            "HP": { "Mobile": 300, "Laptop": 800 },
+            "Nokia": { "Mobile": 200, "Laptop": 750 },
+            "Samsung": { "Mobile": 350, "Laptop": 900 },
+            "Motorola": { "Mobile": 250, "Laptop": 700 },
+            "Apple": { "Mobile": 700, "Laptop": 1500 }
+        };
+
+        // Function to show/hide quantity input fields based on checkbox selection
+        document.getElementById('mobile').addEventListener('change', function() {
+            document.getElementById('mobileQuantityDiv').classList.toggle('hidden', !this.checked);
+        });
+
+        document.getElementById('laptop').addEventListener('change', function() {
+            document.getElementById('laptopQuantityDiv').classList.toggle('hidden', !this.checked);
+        });
+
+        document.getElementById('produceBillBtn').addEventListener('click', function() {
+            const brand = document.getElementById('brand').value;
+            const mobileChecked = document.getElementById('mobile').checked;
+            const laptopChecked = document.getElementById('laptop').checked;
+            const mobileQuantity = parseInt(document.getElementById('mobileQuantity').value) || 0;
+            const laptopQuantity = parseInt(document.getElementById('laptopQuantity').value) || 0;
+
+            let mobileTotal = 0;
+            let laptopTotal = 0;
+            let totalAmount = 0;
+
+            let mobileBill = "";
+            let laptopBill = "";
+
+            // Calculate the total amount based on selected items and quantities
+            if (mobileChecked && mobileQuantity > 0) {
+                mobileTotal = productPrices[brand]["Mobile"] * mobileQuantity;
+                mobileBill = `Mobile x${mobileQuantity}: $${mobileTotal}`;
+                totalAmount += mobileTotal;
+            }
+
+            if (laptopChecked && laptopQuantity > 0) {
+                laptopTotal = productPrices[brand]["Laptop"] * laptopQuantity;
+                laptopBill = `Laptop x${laptopQuantity}: $${laptopTotal}`;
+                totalAmount += laptopTotal;
+            }
+
+            if ((!mobileChecked && !laptopChecked) || (mobileQuantity <= 0 && laptopQuantity <= 0)) {
+                alert("Please select at least one product and enter a quantity greater than zero.");
+                return;
+            }
+
+            // Show modal with formatted bill
+            document.getElementById('mobileBill').textContent = mobileBill;
+            document.getElementById('laptopBill').textContent = laptopBill;
+            document.getElementById('totalAmount').textContent = `Total Amount: $${totalAmount}`;
+
+            document.getElementById('billModal').style.display = "block";
+        });
+
+        function closeModal() {
+            document.getElementById('billModal').style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

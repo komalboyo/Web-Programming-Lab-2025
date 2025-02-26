@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Winter Vacation Videos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0044cc;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .video-container {
+            margin: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .video-container h2 {
+            text-align: center;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 10px;
+        }
+
+        footer {
+            background-color: #0044cc;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Share Your Winter Vacation Videos</h1>
+        <p>Experience the magic of winter through the lens of your vacation videos!</p>
+    </header>
+
+    <div class="container">
+        <!-- Video 1 -->
+        <div class="video-container">
+            <h2>Winter Wonderland</h2>
+            <video controls>
+                <source src="v1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-container">
+            <h2>Snowy Mountains</h2>
+            <video controls>
+                <source src="v2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-container">
+            <h2>Holiday Fun</h2>
+            <video controls>
+                <source src="v3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Video 4 (optional) -->
+        <div class="video-container">
+            <h2>Cozy Cabin Vibes</h2>
+            <video controls>
+                <source src="v4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Share Your Winter Vacation Videos | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

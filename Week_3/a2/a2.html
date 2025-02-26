@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Ball Animation, Home Assignment 2</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+        }
+
+        canvas {
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="ballCanvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('ballCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 30,
+            dx: 4,
+            dy: 4,
+            color: 'linear-gradient(45deg, #ff6600, #ff3399)', // Gradient color
+            shadow: 'rgba(0, 0, 0, 0.5)',
+            shadowOffset: 5,
+            shadowBlur: 15
+        };
+
+        function drawBall() {
+            const gradient = ctx.createLinearGradient(ball.x - ball.radius, ball.y - ball.radius, ball.x + ball.radius, ball.y + ball.radius);
+            gradient.addColorStop(0, '#ff6600');
+            gradient.addColorStop(1, '#ff3399');
+
+            // Apply shadow
+            ctx.shadowColor = ball.shadow;
+            ctx.shadowOffsetX = ball.shadowOffset;
+            ctx.shadowOffsetY = ball.shadowOffset;
+            ctx.shadowBlur = ball.shadowBlur;
+
+            // Draw ball with gradient
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function updateBallPosition() {
+            // Ball movement
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // Check for boundary collision
+            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+                ball.dx = -ball.dx;
+            }
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.dy = -ball.dy;
+            }
+        }
+
+        function animate() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the ball
+            drawBall();
+
+            // Update ball position
+            updateBallPosition();
+
+            // Call animate again to create an animation loop
+            requestAnimationFrame(animate);
+        }
+
+        // Start the animation
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Population Table</title>
+    <style>
+        table {
+            width: 60%;
+            margin: 50px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        /* Column Headings Background Color */
+        th {
+            background-color: red;
+            color: white;
+        }
+        caption {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <caption>Country Population (in Crores) for 1998-2000</caption>
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Year</th>
+                <th>Population (in Crores)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="3">India</td>
+                <td>1998</td>
+                <td>85</td>
+            </tr>
+            <tr>
+                <td>1999</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>2000</td>
+                <td>100</td>
+            </tr>
+
+            <tr>
+                <td rowspan="3">USA</td>
+                <td>1998</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>1999</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>2000</td>
+                <td>40</td>
+            </tr>
+
+            <tr>
+                <td rowspan="3">UK</td>
+                <td>1998</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>1999</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>2000</td>
+                <td>35</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

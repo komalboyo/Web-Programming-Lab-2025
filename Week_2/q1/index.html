@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Bio-Data Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Student Bio-Data Form</h2>
+    
+    <form>
+        <!-- Full Name -->
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Enter Full Name">
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" class="form-control" id="dob">
+        </div>
+
+        <!-- Gender -->
+        <div class="form-group">
+            <label>Gender</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male">
+                <label class="form-check-label" for="genderMale">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female">
+                <label class="form-check-label" for="genderFemale">Female</label>
+            </div>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" rows="3" placeholder="Enter Address"></textarea>
+        </div>
+
+        <!-- Subjects Interested -->
+        <div class="form-group">
+            <label>Subjects Interested</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Mathematics" id="subjectMath">
+                <label class="form-check-label" for="subjectMath">
+                    Mathematics
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Science" id="subjectScience">
+                <label class="form-check-label" for="subjectScience">
+                    Science
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="English" id="subjectEnglish">
+                <label class="form-check-label" for="subjectEnglish">
+                    English
+                </label>
+            </div>
+        </div>
+
+        <!-- Table for Previous Education -->
+        <div class="form-group">
+            <label for="previousEducation">Previous Education</label>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Institution Name</th>
+                        <th>Degree</th>
+                        <th>Year of Passing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="form-control" placeholder="Enter Institution Name"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter Degree"></td>
+                        <td><input type="number" class="form-control" placeholder="Enter Year"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-control" placeholder="Enter Institution Name"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter Degree"></td>
+                        <td><input type="number" class="form-control" placeholder="Enter Year"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

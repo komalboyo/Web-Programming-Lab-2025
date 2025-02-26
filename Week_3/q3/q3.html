@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card Designer (Q3, Lab 3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .left-side {
+            width: 50%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .right-side {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-left: 2px solid #ddd;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 80%;
+            height: 80%;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            background-color: #ffebcd;
+            transition: all 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        input, select, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Side: Settings -->
+    <div class="left-side">
+        <h2>Customize Your Birthday Card</h2>
+
+        <label for="color">Choose Card Color:</label>
+        <select id="color">
+            <option value="#ffebcd">Light Peach</option>
+            <option value="#ffcccc">Light Pink</option>
+            <option value="#d0e8f2">Light Blue</option>
+            <option value="#f7f7f7">White</option>
+        </select>
+
+        <label for="font">Choose Font:</label>
+        <select id="font">
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+        </select>
+
+        <label for="fontSize">Enter Font Size (px):</label>
+        <input type="number" id="fontSize" value="30" />
+
+        <label for="borderStyle">Choose Border Style:</label>
+        <select id="borderStyle">
+            <option value="none">None</option>
+            <option value="double">Double</option>
+            <option value="solid">Solid</option>
+        </select>
+
+        <label for="addPhoto">Add Photo:</label>
+        <input type="checkbox" id="addPhoto">
+
+        <label for="text">Enter Text:</label>
+        <textarea id="text" rows="5" placeholder="Enter your birthday message..."></textarea>
+
+        <button id="updateButton">Update Card</button>
+    </div>
+
+    <!-- Right Side: Birthday Card -->
+    <div class="right-side">
+        <div class="card" id="birthdayCard">
+            <img id="cardImage" style="display: none;" src="" alt="Birthday Image" />
+            <p id="cardText" style="font-size: 30px; font-family: Arial;">Happy Birthday!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('updateButton').addEventListener('click', function() {
+            // Get values from settings
+            let color = document.getElementById('color').value;
+            let font = document.getElementById('font').value;
+            let fontSize = document.getElementById('fontSize').value;
+            let borderStyle = document.getElementById('borderStyle').value;
+            let addPhoto = document.getElementById('addPhoto').checked;
+            let text = document.getElementById('text').value;
+
+            // Update the card styles and text
+            let card = document.getElementById('birthdayCard');
+            let cardText = document.getElementById('cardText');
+            let cardImage = document.getElementById('cardImage');
+
+            // Set background color of the card
+            card.style.backgroundColor = color;
+
+            // Set border style
+            if (borderStyle === "none") {
+                card.style.border = "none";
+            } else if (borderStyle === "double") {
+                card.style.border = "double 5px #000";
+            } else {
+                card.style.border = "solid 5px #000";
+            }
+
+            // Set font and font size
+            cardText.style.fontFamily = font;
+            cardText.style.fontSize = fontSize + "px";
+
+            // Update the text on the card
+            cardText.textContent = text || "Happy Birthday!";
+
+            // Handle photo addition
+            if (addPhoto) {
+                cardImage.style.display = "block";
+                cardImage.src = "https://picsum.photos/200"; // Placeholder image
+            } else {
+                cardImage.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
